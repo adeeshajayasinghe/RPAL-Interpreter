@@ -4,25 +4,10 @@
 #include <string.h>
 #include <ctype.h>
 #include <vector>
+#include "lexer.h"
 using namespace std;
 
 
-using namespace std;
-
-enum TokenType {
-    NUMBER,
-    IDENTIFIER,
-    OPERATOR,
-    KEYWORD,
-    STRING,
-    COMMENT
-};
-
-
-struct Token {
-    TokenType type;
-    basic_string<char> lexeme;
-};
 
 bool isPunctuator(char ch)					//check if the given character is a punctuator or not
 {
@@ -97,7 +82,7 @@ bool isKeyword(char *str)						//check if the given substring is a keyword or no
         (!strcmp(str, "false")) || (!strcmp(str, "nil")) ||
         (!strcmp(str, "dummy")) || (!strcmp(str, "within")) ||
         (!strcmp(str, "and")) || (!strcmp(str, "rec")) ||
-        (!strcmp(str, "rec")))
+        (!strcmp(str, ".")))
     {
         return true;
     }
@@ -153,7 +138,7 @@ char* subString(char* realStr, int l, int r)				//extract the required substring
 }
 
 
-vector<Token> parse(char* str)						//parse the expression
+vector<Token> lexicalAnalyzer(char* str)						//parse the expression
 {
     int left = 0, right = 0;
     int len = strlen(str);
@@ -260,7 +245,7 @@ int main()
     // Convert string to char*
     char* inputChar = new char[input.length() + 1];
     strcpy(inputChar, input.c_str());
-    vector<Token> tokens = parse(inputChar);
+    vector<Token> tokens = lexicalAnalyzer(inputChar);
     for (const auto& token : tokens) {
         cout << "Type: " << token.type << ", Lexeme: " << token.lexeme << endl;
     }
