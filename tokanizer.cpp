@@ -82,7 +82,7 @@ bool isKeyword(char *str)						//check if the given substring is a keyword or no
         (!strcmp(str, "false")) || (!strcmp(str, "nil")) ||
         (!strcmp(str, "dummy")) || (!strcmp(str, "within")) ||
         (!strcmp(str, "and")) || (!strcmp(str, "rec")) ||
-        (!strcmp(str, ".")))
+        (!strcmp(str, ".")) || (!strcmp(str, ",")))
     {
         return true;
     }
@@ -194,7 +194,7 @@ vector<Token> lexicalAnalyzer(char* str)						//parse the expression
             if (isOperator(str[right]) == true)
             {
                 string  character = string(1, str[right]);
-                Token token {COMMENT, character};
+                Token token {OPERATOR, character};
                 tokens.push_back(token);
             }
             right++;
