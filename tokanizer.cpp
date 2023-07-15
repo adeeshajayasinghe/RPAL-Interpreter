@@ -62,7 +62,8 @@ bool isOperator(char ch)							//check if the given character is an operator or 
         ch == '#' || ch == '%' || ch == '^' ||
         ch == '_' || ch == '[' || ch == ']' ||
         ch == '{' || ch == '}' || ch == '"' ||
-        ch == '`' || ch == '?'
+        ch == '`' || ch == '?' || ch == '(' ||
+        ch == ')'
             )
     {
         return true;
@@ -194,7 +195,7 @@ vector<Token> lexicalAnalyzer(char* str)						//parse the expression
             if (isOperator(str[right]) == true)
             {
                 string  character = string(1, str[right]);
-                Token token {COMMENT, character};
+                Token token {OPERATOR, character};
                 tokens.push_back(token);
             }
             right++;
