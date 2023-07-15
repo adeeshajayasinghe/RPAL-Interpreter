@@ -62,8 +62,7 @@ bool isOperator(char ch)							//check if the given character is an operator or 
         ch == '#' || ch == '%' || ch == '^' ||
         ch == '_' || ch == '[' || ch == ']' ||
         ch == '{' || ch == '}' || ch == '"' ||
-        ch == '`' || ch == '?' || ch == '(' ||
-        ch == ')'
+        ch == '`' || ch == '?'
             )
     {
         return true;
@@ -83,7 +82,7 @@ bool isKeyword(char *str)						//check if the given substring is a keyword or no
         (!strcmp(str, "false")) || (!strcmp(str, "nil")) ||
         (!strcmp(str, "dummy")) || (!strcmp(str, "within")) ||
         (!strcmp(str, "and")) || (!strcmp(str, "rec")) ||
-        (!strcmp(str, ".")))
+        (!strcmp(str, ".")) || (!strcmp(str, ",")))
     {
         return true;
     }
